@@ -26,4 +26,13 @@ class DatabaseService {
   }
 
   void updateTodos(String todoId, Todos todos) {}
+
+  void deleteTodos(String todoId) async {
+  try {
+    await _event1Ref.doc(todoId).delete();
+  } catch (e) {
+    print("Failed to delete todo: $e");
+  }
+}
+
 }
