@@ -7,11 +7,13 @@ class TodosPageTest extends StatelessWidget{
  final DatabaseService _databaseService = DatabaseService();
   final TextEditingController _taskController = TextEditingController();
 
+  TodosPageTest({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todos App'),
+        title: const Text('Todos App'),
         centerTitle: true,
       ),
       body: Column(
@@ -23,13 +25,13 @@ class TodosPageTest extends StatelessWidget{
                 Expanded(
                   child: TextField(
                     controller: _taskController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter new task',
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
                     if (_taskController.text.isNotEmpty) {
@@ -43,7 +45,7 @@ class TodosPageTest extends StatelessWidget{
                       _taskController.clear();
                     }
                   },
-                  child: Text('Add'),
+                  child: const Text('Add'),
                 ),
               ],
             ),
@@ -62,12 +64,12 @@ class TodosPageTest extends StatelessWidget{
                   );
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 final todos = snapshot.data ?? [];
                 if (todos.isEmpty) {
-                  return Center(child: Text('No tasks found.'));
+                  return const Center(child: Text('No tasks found.'));
                 }
                 return ListView.builder(
                   itemCount: todos.length,
