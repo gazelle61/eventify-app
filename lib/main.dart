@@ -3,21 +3,12 @@
 import 'package:eventifyapp/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'notification/firebase_notification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  const InitializationSettings initializationSettings =
-      InitializationSettings();
-
-  FirebaseNotification firebaseNotification = FirebaseNotification();
-  await firebaseNotification.initializeFirebaseMessaging();
-
   runApp(const MyApp());
 }
 
