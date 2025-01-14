@@ -1,29 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eventifyapp/models/todos.dart';
-
-const String TODOS_COLLECTION_REF = "event1";
 
 class DatabaseService {
-  final _firestore = FirebaseFirestore.instance;
+  // get collection of events
+  final CollectionReference events =
+      FirebaseFirestore.instance.collection('event');
 
-  late final CollectionReference _event1Ref;
-
-  DatabaseService() {
-    _event1Ref =
-        _firestore.collection(TODOS_COLLECTION_REF).withConverter<Todos>(
-            fromFirestore: (snapshots, _) => Todos.fromJson(
-                  snapshots.data()!,
-                ),
-            toFirestore: (todos, _) => todos.toJson());
+  // CREATE : add a new event
+  Future<void> addEvent(String event) {
+    return events.add({
+      'events': event,
+      'timestamp': Timestamp.now(),
+    });
   }
 
-  Stream<QuerySnapshot> getTodos() {
-    return _event1Ref.snapshots();
+  // READ : get events from database
+  Stream<QuerySnapshot> getEventsStream() {
+    final eventsStream =
+        events.orderBy('timestamp', descending: true).snapshots();
+
+    return eventsStream;
   }
 
-  void addTodos(Todos todos) async {
-    _event1Ref.add(todos);
+  // UPDATE : update events given a doc id
+  Future<void> updateEvent(String docID, String newEvent) {
+    return events.doc(docID).update({
+      'events': newEvent,
+      'timestamp': Timestamp.now(),
+    });
   }
 
-  void updateTodos(String todoId, Todos todos) {}
+  // DELETE : delete events given a doc id
+  Future<void> deleteEvent(String docID) {
+    return events.doc(docID).delete();
+  }
 }
