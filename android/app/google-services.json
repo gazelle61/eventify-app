@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14876944505:android:22b2bc9f2856762fde8ca8",
+        "mobilesdk_app_id": "1:14876944505:android:6b8a6011c5aee4c1de8ca8",
         "android_client_info": {
-          "package_name": "com.eventify.app"
+          "package_name": "com.example.eventifyapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14876944505-9irmr9v4oc0420i08m40g3d6a03ov8ql.apps.googleusercontent.com",
+          "client_id": "14876944505-ad52rk7b7doa8alfcl0g30e2k4d4fint.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.eventify.app",
+            "package_name": "com.example.eventifyapp",
             "certificate_hash": "aed076891d803bed96479ada7a513603c9a09fb7"
           }
         },
